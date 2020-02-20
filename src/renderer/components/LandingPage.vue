@@ -57,6 +57,8 @@ export default {
   },
   mounted() {
     const executablePath = path.join(pathAppResources, "MxRunAsWrapper.exe");
+    // https://stackoverflow.com/questions/10232192/exec-display-stdout-live
+    // A better way to implement the execution of the wrapper and listen correctly to the exit event
     if (fs.existsSync(executablePath)) {
       return;
       // This works so fuck it I'm done I can care about the ui
