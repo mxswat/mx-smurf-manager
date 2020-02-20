@@ -56,7 +56,7 @@ export default {
     }
   },
   mounted() {
-    const executablePath = path.join(pathAppResources, "mxrunas.exe");
+    const executablePath = path.join(pathAppResources, "MxRunAsWrapper.exe");
     if (fs.existsSync(executablePath)) {
       return;
       // This works so fuck it I'm done I can care about the ui
