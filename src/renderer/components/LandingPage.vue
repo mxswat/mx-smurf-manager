@@ -49,7 +49,7 @@ export default {
       this.$electron.shell.openExternal(link);
     },
     createNewSmurf() {
-      // Bat to create user
+      // TODO create bat to create user and add it to admins
       // @echo off
       // net user hidden yourpassword /add
       // net localgroup Administrators hidden /add
@@ -57,7 +57,7 @@ export default {
   },
   mounted() {
     const executablePath = path.join(pathAppResources, "MxRunAsWrapper.exe");
-    // https://stackoverflow.com/questions/10232192/exec-display-stdout-live
+    // Thanks to https://stackoverflow.com/questions/10232192/exec-display-stdout-live
     // A better way to implement the execution of the wrapper and listen correctly to the exit event
     if (fs.existsSync(executablePath)) {
       const testPath = "c:\\windows\\system32\\netstat.exe";
