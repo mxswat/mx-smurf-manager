@@ -61,7 +61,7 @@ export default {
     // A better way to implement the execution of the wrapper and listen correctly to the exit event
     if (fs.existsSync(executablePath)) {
       const testPath = "c:\\windows\\system32\\netstat.exe";
-      var parameters = ['"' + testPath + '"', 'Bimba', 'ghei'];
+      var parameters = ['"' + testPath + '"', 'xxx', 'xxxx'];
       const ls = spawn(executablePath, parameters);
 
       ls.stdout.on("data", function(data) {
@@ -74,6 +74,9 @@ export default {
 
       ls.on("exit", function(code) {
         console.log("child process exited with code " + code.toString());
+        if (code === 0) {
+          alert('it just works');
+        }
       });
     } else {
       console.log("does not");
