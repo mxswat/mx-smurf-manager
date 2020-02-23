@@ -35,7 +35,7 @@ import SystemInformation from "./LandingPage/SystemInformation";
 import fs from "fs";
 const isDev = window.require("electron-is-dev");
 const path = require("path");
-var execFile = require("child_process").execFile;
+const spawn = require("child_process").spawn;
 
 const pathAppResources = `${
   isDev ? "." : window.process.resourcesPath
@@ -60,14 +60,21 @@ export default {
     // https://stackoverflow.com/questions/10232192/exec-display-stdout-live
     // A better way to implement the execution of the wrapper and listen correctly to the exit event
     if (fs.existsSync(executablePath)) {
-      return;
-      // This works so fuck it I'm done I can care about the ui
-      var parameters = ["username", "psw"];
-      execFile(executablePath, parameters, function(err, data) {
-        console.log(err);
-        console.log(data.toString());
+      const testPath = "c:\\windows\\system32\\netstat.exe";
+      var parameters = ['"' + testPath + '"', 'Bimba', 'ghei'];
+      const ls = spawn(executablePath, parameters);
+
+      ls.stdout.on("data", function(data) {
+        console.log("stdout: " + data.toString());
       });
-      console.log("exists");
+
+      ls.stderr.on("data", function(data) {
+        console.log("stderr: " + data.toString());
+      });
+
+      ls.on("exit", function(code) {
+        console.log("child process exited with code " + code.toString());
+      });
     } else {
       console.log("does not");
     }
